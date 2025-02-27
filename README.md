@@ -42,3 +42,26 @@ To edit the credentials file, run:
 ```sh
 python manage.py credentials_edit <environment>
 ```
+
+To load the credentials in your Django app:
+
+```python
+from secure_credentials.secrets_loader import decrypt_credentials
+credentials = decrypt_credentials("environment")
+```
+
+Where `credentials` is an instance of class `CredentialsContainer` containing the decrypted credentials.
+
+To access a credential:
+
+```python
+credentials.get('key')
+```
+
+or
+
+```python
+credentials.dig('key', 'subkey')
+```
+
+for complex nested credentials.
