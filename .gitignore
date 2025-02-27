@@ -1,0 +1,6 @@
+.venv
+build
+dist
+django_secure_credentials.egg-info
+.idea
+**/__pycache__/**
