@@ -2,6 +2,12 @@
 
 All notable changes to Secure Credentials Kit are documented in this file.
 
+## 0.3.0 - 2026-05-31
+
+### Added
+
+- Added `CredentialsContainer.get_as_type()` and `CredentialsContainer.dig_as_type()` for typed credential access.
+
 ## 0.2.1 - 2026-05-20
 
 ### Changed

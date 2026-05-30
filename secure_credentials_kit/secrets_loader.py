@@ -1,6 +1,10 @@
 from os import path
+from typing import TypeVar
+
 from secure_credentials_kit.credentials import read_key, resolve_read_key_path, secret_path
 from secure_credentials_kit.utils import decrypt_credentials_data
+
+T = TypeVar("T")
 
 
 def normalize_credentials(credentials):
@@ -34,6 +38,20 @@ class CredentialsContainer(object):
 
     def get(self, key: str, default=None):
         return self._credentials.get(key, default)
+
+    def get_as_type(self, key: str, output_type: type[T], default=None) -> T:
+        value = self.get(key, default)
+        if value is None:
+            return None
+        return output_type(value)
+
+    def dig_as_type(self, output_type: type[T], *args, default=None) -> T:
+        value = self.dig(*args)
+        if value is None:
+            value = default
+        if value is None:
+            return None
+        return output_type(value)
 
 
 def decrypt_credentials(env: str, secrets_dir: str = "secrets") -> CredentialsContainer:

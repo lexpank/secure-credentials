@@ -201,3 +201,15 @@ credentials.dig('key', 'subkey')
 ```
 
 for complex nested credentials.
+
+To access and cast a credential:
+
+```python
+credentials.get_as_type('port', int)
+```
+
+or
+
+```python
+credentials.dig_as_type(int, 'database', 'port')
+```
